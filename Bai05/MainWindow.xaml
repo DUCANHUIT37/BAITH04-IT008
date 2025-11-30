@@ -1,0 +1,137 @@
+﻿<Window x:Class="QuanLySinhVien.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Quản Lý Sinh Viên" 
+        Height="500" Width="800"
+        WindowStartupLocation="CenterScreen"
+        Background="#F0F0F0">
+
+    <Window.Resources>
+        <Style x:Key="MenuButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#0078D4"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="15,5"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="3"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#005A9E"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Menu Bar -->
+        <Menu Grid.Row="0" Background="#E8E8E8">
+            <MenuItem Header="Chức Năng" FontWeight="SemiBold">
+                <MenuItem x:Name="MenuThemMoi" Header="Thêm Mới" Click="MenuThemMoi_Click"/>
+                <MenuItem x:Name="MenuThoat" Header="Thoát" Click="MenuThoat_Click"/>
+            </MenuItem>
+        </Menu>
+
+        <!-- Toolbar -->
+        <ToolBar Grid.Row="1" Background="#F5F5F5" Height="50">
+            <Button x:Name="BtnThemMoi" 
+                    Style="{StaticResource MenuButtonStyle}"
+                    Click="BtnThemMoi_Click">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="➕" Margin="0,0,5,0" FontSize="14"/>
+                    <TextBlock Text="Thêm Mới" FontSize="13"/>
+                </StackPanel>
+            </Button>
+
+            <Separator Margin="10,0"/>
+
+            <TextBlock Text="Tìm Kiếm Theo Tên:" 
+                       VerticalAlignment="Center" 
+                       Margin="5,0"
+                       FontWeight="SemiBold"/>
+            <TextBox x:Name="TxtTimKiem" 
+                     Width="200" 
+                     VerticalAlignment="Center"
+                     TextChanged="TxtTimKiem_TextChanged"
+                     Padding="5"/>
+        </ToolBar>
+
+        <!-- DataGrid -->
+        <DataGrid Grid.Row="2" 
+                  x:Name="DgvSinhVien"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  SelectionMode="Single"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  AlternatingRowBackground="#F0F8FF"
+                  RowBackground="White"
+                  GridLinesVisibility="All"
+                  HeadersVisibility="Column"
+                  BorderBrush="#CCCCCC"
+                  BorderThickness="1"
+                  Margin="5">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Số TT" 
+                                    Binding="{Binding SoTT}" 
+                                    Width="80"
+                                    ElementStyle="{StaticResource {x:Type TextBlock}}"/>
+
+                <DataGridTextColumn Header="Mã Số SV" 
+                                    Binding="{Binding MaSV}" 
+                                    Width="120"/>
+
+                <DataGridTextColumn Header="Tên Sinh Viên" 
+                                    Binding="{Binding TenSV}" 
+                                    Width="*"/>
+
+                <DataGridTextColumn Header="Khoa" 
+                                    Binding="{Binding Khoa}" 
+                                    Width="200"/>
+
+                <DataGridTextColumn Header="Điểm TB" 
+                                    Binding="{Binding DiemTB}" 
+                                    Width="100"/>
+            </DataGrid.Columns>
+
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="#CCCCCC"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="Padding" Value="8"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+        </DataGrid>
+
+        <!-- Status Bar -->
+        <StatusBar Grid.Row="3" Background="#E8E8E8">
+            <StatusBarItem>
+                <TextBlock x:Name="TxtTongSo" 
+                           Text="Tổng số sinh viên: 0" 
+                           FontWeight="SemiBold"/>
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>

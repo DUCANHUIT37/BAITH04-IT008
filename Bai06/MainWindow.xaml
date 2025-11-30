@@ -1,0 +1,160 @@
+﻿<Window x:Class="SaoCHepFile.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Sao chép tập tin" 
+        Height="400" Width="600"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize"
+        Background="#F0F0F0">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Nhóm Sao chép tập tin -->
+        <GroupBox Grid.Row="0" Header="Sao chép tập tin" 
+                  FontWeight="SemiBold" 
+                  Foreground="#0078D4"
+                  Padding="15">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="60"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Đường Dẫn Thư Mục Nguồn -->
+                <TextBlock Grid.Row="0" Grid.Column="0" 
+                           Text="Đường Dẫn Thư Mục Nguồn"
+                           VerticalAlignment="Center"/>
+                <TextBox Grid.Row="0" Grid.Column="1" 
+                         x:Name="TxtNguon"
+                         Height="30"
+                         Padding="5"
+                         VerticalContentAlignment="Center"
+                         IsReadOnly="True"/>
+                <Button Grid.Row="0" Grid.Column="2" 
+                        x:Name="BtnChonNguon"
+                        Content="..."
+                        Height="30"
+                        Margin="5,0,0,0"
+                        Click="BtnChonNguon_Click"
+                        FontWeight="Bold"
+                        FontSize="16"/>
+
+                <!-- Đường Dẫn Thư Mục Đích -->
+                <TextBlock Grid.Row="2" Grid.Column="0" 
+                           Text="Đường Dẫn Thư Mục Đích"
+                           VerticalAlignment="Center"/>
+                <TextBox Grid.Row="2" Grid.Column="1" 
+                         x:Name="TxtDich"
+                         Height="30"
+                         Padding="5"
+                         VerticalContentAlignment="Center"
+                         IsReadOnly="True"/>
+                <Button Grid.Row="2" Grid.Column="2" 
+                        x:Name="BtnChonDich"
+                        Content="..."
+                        Height="30"
+                        Margin="5,0,0,0"
+                        Click="BtnChonDich_Click"
+                        FontWeight="Bold"
+                        FontSize="16"/>
+            </Grid>
+        </GroupBox>
+
+        <!-- Nút Sao Chép -->
+        <Button Grid.Row="4" 
+                x:Name="BtnSaoChep"
+                Content="Sao Chép"
+                Width="120"
+                Height="35"
+                HorizontalAlignment="Center"
+                Click="BtnSaoChep_Click"
+                IsEnabled="False">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="#0078D4"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontWeight" Value="SemiBold"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" 
+                                        CornerRadius="3"
+                                        BorderThickness="1"
+                                        BorderBrush="#0078D4">
+                                    <ContentPresenter HorizontalAlignment="Center" 
+                                                    VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#005A9E"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="#CCCCCC"/>
+                            <Setter Property="Foreground" Value="#666666"/>
+                            <Setter Property="Cursor" Value="Arrow"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <!-- Nhóm Tiến trình sao chép -->
+        <GroupBox Grid.Row="6" Header="Tiến trình sao chép" 
+                  FontWeight="SemiBold" 
+                  Foreground="#0078D4"
+                  Padding="15">
+            <StackPanel>
+                <!-- ProgressBar với Tooltip -->
+                <ProgressBar x:Name="ProgressBarSaoChep" 
+                             Height="30"
+                             Minimum="0"
+                             Maximum="100"
+                             Value="0"
+                             Foreground="#00D000"
+                             BorderBrush="#AAAAAA"
+                             BorderThickness="1">
+                    <ProgressBar.ToolTip>
+                        <ToolTip x:Name="TooltipProgress">
+                            <TextBlock x:Name="TxtTooltip" 
+                                       Text="Tiến trình: 0%"
+                                       FontWeight="SemiBold"/>
+                        </ToolTip>
+                    </ProgressBar.ToolTip>
+                </ProgressBar>
+
+                <!-- TextBlock hiển thị thông tin file đang sao chép -->
+                <TextBlock x:Name="TxtThongTin" 
+                           Margin="0,10,0,0"
+                           Text="Đang sao chép: "
+                           TextWrapping="Wrap"
+                           Foreground="#333333"
+                           Visibility="Collapsed"/>
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</Window>

@@ -1,0 +1,110 @@
+﻿<Window x:Class="SoanThaoVanBan.FontDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Font" Height="400" Width="450"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        Background="#F0F0F0">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Main Content Area -->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="120"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Font Column -->
+            <StackPanel Grid.Column="0" Margin="0,0,5,0">
+                <Label Content="Font:" FontWeight="Bold"/>
+                <ListBox Name="lstFont" Height="150" SelectionChanged="LstFont_SelectionChanged">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" FontFamily="{Binding}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <TextBox Name="txtFont" Margin="0,5,0,0" TextChanged="TxtFont_TextChanged"/>
+            </StackPanel>
+
+            <!-- Font Style Column -->
+            <StackPanel Grid.Column="1" Margin="5,0">
+                <Label Content="Font style:" FontWeight="Bold"/>
+                <ListBox Name="lstFontStyle" Height="150" SelectionChanged="LstFontStyle_SelectionChanged">
+                    <ListBoxItem Content="Regular" Tag="Regular"/>
+                    <ListBoxItem Content="Italic" Tag="Italic"/>
+                    <ListBoxItem Content="Bold" Tag="Bold"/>
+                    <ListBoxItem Content="Bold Italic" Tag="BoldItalic"/>
+                </ListBox>
+                <TextBox Name="txtFontStyle" Margin="0,5,0,0" IsReadOnly="True"/>
+            </StackPanel>
+
+            <!-- Size Column -->
+            <StackPanel Grid.Column="2" Margin="5,0,0,0">
+                <Label Content="Size:" FontWeight="Bold"/>
+                <ListBox Name="lstSize" Height="150" SelectionChanged="LstSize_SelectionChanged"/>
+                <TextBox Name="txtSize" Margin="0,5,0,0" TextChanged="TxtSize_TextChanged"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Bottom Section -->
+        <Grid Grid.Row="1" Margin="0,10,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Effects -->
+            <GroupBox Grid.Row="0" Header="Effects" Padding="5" Margin="0,0,0,10">
+                <StackPanel>
+                    <CheckBox Name="chkStrikeout" Content="Strikeout" Checked="ChkEffect_Changed" Unchecked="ChkEffect_Changed"/>
+                    <CheckBox Name="chkUnderline" Content="Underline" Margin="0,5,0,0" Checked="ChkEffect_Changed" Unchecked="ChkEffect_Changed"/>
+
+                    <Grid Margin="0,10,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Content="Color:" VerticalAlignment="Center"/>
+                        <ComboBox Name="cboColor" Grid.Column="1" Margin="5,0,0,0" SelectedIndex="3" SelectionChanged="CboColor_SelectionChanged">
+                            <ComboBoxItem Content="Blue" Foreground="Blue"/>
+                            <ComboBoxItem Content="Red" Foreground="Red"/>
+                            <ComboBoxItem Content="Green" Foreground="Green"/>
+                            <ComboBoxItem Content="Black" Foreground="Black"/>
+                        </ComboBox>
+                    </Grid>
+                </StackPanel>
+            </GroupBox>
+
+            <!-- Sample -->
+            <GroupBox Grid.Row="1" Header="Sample" Padding="10" Height="60" Margin="0,0,0,10">
+                <TextBlock Name="txtSample" Text="AaBbYyZz" 
+                          HorizontalAlignment="Center" 
+                          VerticalAlignment="Center"
+                          FontSize="20"/>
+            </GroupBox>
+
+            <!-- Buttons -->
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Name="btnOK" Content="OK" Width="80" Height="25" 
+                       Click="BtnOK_Click" IsDefault="True"
+                       Background="#0078D7" Foreground="White" Margin="0,0,5,0"/>
+                <Button Name="btnCancel" Content="Cancel" Width="80" Height="25" 
+                       Click="BtnCancel_Click" IsCancel="True"
+                       Background="#E1E1E1" Margin="5,0,5,0"/>
+                <Button Name="btnApply" Content="Apply" Width="80" Height="25" 
+                       Click="BtnApply_Click"
+                       Background="#E1E1E1" Margin="5,0,0,0"/>
+                <Button Name="btnHelp" Content="Help" Width="80" Height="25" 
+                       Click="BtnHelp_Click"
+                       Background="#E1E1E1" Margin="5,0,0,0"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

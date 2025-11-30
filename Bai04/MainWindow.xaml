@@ -1,0 +1,92 @@
+﻿<Window x:Class="SoanThaoVanBan.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Soạn thảo văn bản" Height="500" Width="800"
+        Background="#F0F0F0">
+    <DockPanel>
+        <!-- Menu Bar -->
+        <Menu DockPanel.Dock="Top" Background="#0078D7" Foreground="White">
+            <Menu.Resources>
+                <Style TargetType="{x:Type ContextMenu}">
+                    <Setter Property="Background" Value="#FFFFFF"/>
+                    <Setter Property="Foreground" Value="#000000"/>
+                </Style>
+            </Menu.Resources>
+
+            <MenuItem Header="Hệ thống" Name="MenuHeThong" Foreground="White">
+                <MenuItem Header="Tạo văn bản mới" Click="TaoVanBanMoi_Click" Background="White" Foreground="Black">
+                    <MenuItem.Icon>
+                        <Image Source="D:\SLIDE BÀI GIẢNG HK3\IT008\LAB/new.png" Width="16" Height="16"/>
+                    </MenuItem.Icon>
+                    <MenuItem.InputGestureText>Ctrl+N</MenuItem.InputGestureText>
+                </MenuItem>
+                <MenuItem Header="Mở tập tin" Click="MoTapTin_Click" Background="White" Foreground="Black">
+                    <MenuItem.Icon>
+                        <Image Source="D:\SLIDE BÀI GIẢNG HK3\IT008\LAB/open.png" Width="16" Height="16"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Lưu nội dung văn bản" Click="LuuNoiDung_Click" Background="White" Foreground="Black">
+                    <MenuItem.Icon>
+                        <Image Source="D:\SLIDE BÀI GIẢNG HK3\IT008\LAB/save.png" Width="16" Height="16"/>
+                    </MenuItem.Icon>
+                    <MenuItem.InputGestureText>Ctrl+S</MenuItem.InputGestureText>
+                </MenuItem>
+                <Separator Background="White"/>
+                <MenuItem Header="Thoát" Click="Thoat_Click" Background="White" Foreground="Black"/>
+            </MenuItem>
+            <MenuItem Header="Định dạng" Name="MenuDinhDang" Foreground="White">
+                <MenuItem Header="Font..." Click="Font_Click" Background="White" Foreground="Black"/>
+            </MenuItem>
+        </Menu>
+
+        <!-- Tool Strip -->
+        <ToolBarTray DockPanel.Dock="Top" Background="#E1E1E1">
+            <ToolBar Background="Transparent" HorizontalAlignment="Left" Width="476">
+                <Button Click="TaoVanBanMoi_Click" ToolTip="Tạo văn bản mới">
+                    <Image Source="D:\SLIDE BÀI GIẢNG HK3\IT008\LAB/new.png" Width="20" Height="20"/>
+                </Button>
+                <Button Click="MoTapTin_Click" ToolTip="Mở tập tin">
+                    <Image Source="D:\SLIDE BÀI GIẢNG HK3\IT008\LAB/open.png" Width="20" Height="20"/>
+                </Button>
+                <Button Click="LuuNoiDung_Click" ToolTip="Lưu nội dung văn bản">
+                    <Image Source="D:\SLIDE BÀI GIẢNG HK3\IT008\LAB/save.png" Width="20" Height="20"/>
+                </Button>
+                <Separator/>
+
+                <!-- Font Selection -->
+                <Label Content="Font:" VerticalAlignment="Center"/>
+                <ComboBox Name="cboFont" Width="150" SelectionChanged="CboFont_SelectionChanged"/>
+
+                <Label Content="Size:" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                <ComboBox Name="cboSize" Width="60" SelectionChanged="CboSize_SelectionChanged"/>
+
+                <Separator/>
+
+                <!-- Format Buttons -->
+                <ToggleButton Name="btnBold" Click="BtnBold_Click" ToolTip="Bold (Ctrl+B)" Width="25">
+                    <TextBlock Text="B" FontWeight="Bold"/>
+                </ToggleButton>
+                <ToggleButton Name="btnItalic" Click="BtnItalic_Click" ToolTip="Italic (Ctrl+I)" Width="25">
+                    <TextBlock Text="I" FontStyle="Italic"/>
+                </ToggleButton>
+                <ToggleButton Name="btnUnderline" Click="BtnUnderline_Click" ToolTip="Underline (Ctrl+U)" Width="25">
+                    <TextBlock Text="U" TextDecorations="Underline"/>
+                </ToggleButton>
+            </ToolBar>
+        </ToolBarTray>
+
+        <!-- Main Text Area -->
+        <RichTextBox Name="rtbContent" 
+                     Background="White"
+                     Margin="5"
+                     VerticalScrollBarVisibility="Auto"
+                     HorizontalScrollBarVisibility="Auto"
+                     SelectionChanged="RtbContent_SelectionChanged">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text=""/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+    </DockPanel>
+</Window>
