@@ -25,3 +25,4 @@ D:\SLIDE BÀI GIẢNG HK3\IT008\LAB\BAITH4\Bai03\obj\Debug\net8.0-windows\refint
 D:\SLIDE BÀI GIẢNG HK3\IT008\LAB\BAITH4\Bai03\obj\Debug\net8.0-windows\Bai03.pdb
 D:\SLIDE BÀI GIẢNG HK3\IT008\LAB\BAITH4\Bai03\obj\Debug\net8.0-windows\Bai03.genruntimeconfig.cache
 D:\SLIDE BÀI GIẢNG HK3\IT008\LAB\BAITH4\Bai03\obj\Debug\net8.0-windows\ref\Bai03.dll
+D:\SLIDE BÀI GIẢNG HK3\IT008\LAB\BAITH4\Bai03\obj\Debug\net8.0-windows\Bai03.sourcelink.json

@@ -14,6 +14,7 @@ namespace Bai03
     {
         private string connectionString = @"Server=HP\SQLEXPRESS;Database=MediaPlayerDB;Integrated Security=True;";
         private DispatcherTimer timer;
+        private DispatcherTimer dateTimeTimer;
         private bool isUserDraggingSlider = false;
         private string currentFilePath = "";
         private double lastKnownDuration = 0;
@@ -22,6 +23,7 @@ namespace Bai03
         {
             InitializeComponent();
             InitializeTimer();
+            InitializeDateTimeTimer();
             LoadPlaylist();
         }
 
@@ -30,6 +32,27 @@ namespace Bai03
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(1000);
             timer.Tick += Timer_Tick;
+        }
+
+        private void InitializeDateTimeTimer()
+        {
+            dateTimeTimer = new DispatcherTimer();
+            dateTimeTimer.Interval = TimeSpan.FromSeconds(1);
+            dateTimeTimer.Tick += DateTimeTimer_Tick;
+            dateTimeTimer.Start();
+            UpdateDateTime();
+        }
+
+        private void DateTimeTimer_Tick(object sender, EventArgs e)
+        {
+            UpdateDateTime();
+        }
+
+        private void UpdateDateTime()
+        {
+            DateTime now = DateTime.Now;
+            string dateTimeText = string.Format("Hôm nay là ngày: {0:dd/MM/yyyy} - Bây giờ là {0:hh:mm:ss tt}", now);
+            txtStatusDateTime.Text = dateTimeText;
         }
 
         private void Timer_Tick(object sender, EventArgs e)
